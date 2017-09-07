@@ -9,6 +9,8 @@ import threading
 import mellowGUI
 import random
 
+import mellowBidder
+
 #The variables are static because I only want one mellow client for the whole execution.
 
 #Mellow specific constants:
@@ -160,6 +162,8 @@ def gameLogic(mellowGUIVars):
 			else:
 				mellowGUIVars.setMessage('You bid mellow. Any Alternative bids?')
 			
+			#ask mellowBidder
+			mellowBidder.getMellowBid(hand)
 			
 			#Ask for alternative bids:
 			mellowGUIVars.askUserForAlternativeBids()
