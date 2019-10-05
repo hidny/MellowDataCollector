@@ -110,12 +110,25 @@ def gameLogic(mellowGUIVars):
 		deck = getShuffledDeck()
 		hand = []
 		
+		#TODO: less hard coding and make a helper function
+		#Rig it so there's no AS or KS:
+		foundHandWithoutASorKS=0
+		handWithoutASorKS=0
+		while foundHandWithoutASorKS == 0:
+			foundHandWithoutASorKS = 1
+			for i in range(0, 13):
+				tempCard = mellowGUI.convertCardNumToString(deck[13 * handWithoutASorKS + i])
+				if tempCard == "AS" or tempCard == "KS":
+					handWithoutASorKS = handWithoutASorKS + 1
+					foundHandWithoutASorKS = 0
+					break
+		
 		
 		handStringTest = ''
 		for i in range(0, 13):
-			hand.append(deck[i])
+			hand.append(deck[13 * handWithoutASorKS + i])
 			handStringTest = handStringTest + mellowGUI.convertCardNumToString(hand[i]) + ' '
-		
+		#END setting hand
 		
 		hand = mellowGUI.sortCards(hand)
 		
